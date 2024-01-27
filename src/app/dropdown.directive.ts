@@ -1,9 +1,9 @@
-import { Directive, Input, HostBinding, HostListener, ElementRef } from '@angular/core';
+import { Directive, Input, HostBinding, HostListener, ElementRef, AfterViewInit } from '@angular/core';
 
 @Directive({
     selector: '[appDropdown]'
 })
-export class DropdownDirective {
+export class DropdownDirective implements AfterViewInit {
 
     fromButton: boolean = false;
     dropped: boolean = false;
@@ -13,6 +13,10 @@ export class DropdownDirective {
     }
 
     constructor(private el: ElementRef) { }
+
+    ngAfterViewInit(): void {
+        this.fromButton = false;
+    }
 
     @HostBinding('class.drop') drop: boolean = false;
 
